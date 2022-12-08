@@ -132,6 +132,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sorting\CombSort.cpp" />
     <ClCompile Include="Sorting\ShellSort.cpp" />
     <ClCompile Include="Sorting\CycleSort.cpp" />
     <ClCompile Include="Sorting\PancakeSort.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Sorting\StoogeSort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sorting\CombSort.h" />
     <ClInclude Include="Sorting\ShellSort.h" />
     <ClInclude Include="Sorting\CycleSort.h" />
     <ClInclude Include="Sorting\PancakeSort.h" />

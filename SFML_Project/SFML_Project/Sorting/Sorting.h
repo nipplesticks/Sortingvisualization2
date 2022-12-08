@@ -14,6 +14,7 @@
 #include "CycleSort.h"
 #include "ShellSort.h"
 #include "StoogeSort.h"
+#include "CombSort.h"
 #include <vector>
 
 namespace Alg
@@ -34,6 +35,7 @@ namespace Alg
     CycleSort,
     ShellSort,
     StoogeSort,
+    CombSort,
     StdSort,
     NUM_SORT_ALGS
   };
@@ -88,6 +90,9 @@ static inline std::vector<iSort*> GetSortingAlgorithms()
       break;
     case Alg::StoogeSort:
       algs.push_back(new StoogeSort);
+      break;
+    case Alg::CombSort:
+      algs.push_back(new CombSort);
       break;
     case Alg::StdSort:
       algs.push_back(new StdSort);
