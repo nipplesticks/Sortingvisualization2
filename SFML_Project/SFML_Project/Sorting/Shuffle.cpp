@@ -14,7 +14,6 @@ double Shuffle::Run(List& list)
     size_t idx1 = rand() % num;
     size_t idx2 = rand() % num;
     std::swap(list[idx1], list[idx2]);
-    Sleep(Item::DELAY_TIME_MS);
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;

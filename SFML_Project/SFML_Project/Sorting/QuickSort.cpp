@@ -32,7 +32,6 @@ void _quickSort(List& list, int low, int high)
   }
 }
 
-
 double QuickSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;

@@ -3,14 +3,14 @@
 #include <thread>
 #include <time.h>
 
-
 int main()
 {
   srand(time(0));
+
   Engine::WINDOW_SIZE.x = 1920;
   Engine::WINDOW_SIZE.y = 1080;
-  Engine::WINDOW_SIZE.x = 1280;
-  Engine::WINDOW_SIZE.y = 720;
+  Engine::WINDOW_SIZE.x = 2048;
+  Engine::WINDOW_SIZE.y = 1080;
   sf::RenderWindow wnd(sf::VideoMode(Engine::WINDOW_SIZE.x, Engine::WINDOW_SIZE.y), "Sorting Visualization 2"/*, sf::Style::Fullscreen*/);
   Engine engine;
   

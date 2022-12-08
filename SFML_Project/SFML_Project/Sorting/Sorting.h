@@ -15,6 +15,15 @@
 #include "ShellSort.h"
 #include "StoogeSort.h"
 #include "CombSort.h"
+#include "CocktailSort.h"
+#include "PigeonHoleSort.h"
+#include "RecursiveBubbleSort.h"
+#include "RecursiveInsertionSort.h"
+#include "BitonicSort.h"
+#include "SleepSort.h"
+#include "StdQSort.h"
+#include "StdSortHeap.h"
+#include "StdStableSort.h"
 #include <vector>
 
 namespace Alg
@@ -23,7 +32,9 @@ namespace Alg
   {
     Shuffle = 0,
     BubbleSort,
+    RecursiveBubbleSort,
     InsertionSort,
+    RecursiveInsertionSort,
     SelectionSort,
     RandomSort,
     GnomeSort,
@@ -36,7 +47,14 @@ namespace Alg
     ShellSort,
     StoogeSort,
     CombSort,
+    CocktailSort,
+    PigeonHoleSort,
+    BitonicSort,
+    SleepSort,
     StdSort,
+    StdQSort,
+    StdSortHeap,
+    StdStableSort,
     NUM_SORT_ALGS
   };
 }
@@ -55,8 +73,14 @@ static inline std::vector<iSort*> GetSortingAlgorithms()
     case Alg::BubbleSort:
       algs.push_back(new BubbleSort);
       break;
+    case Alg::RecursiveBubbleSort:
+      algs.push_back(new RecursiveBubbleSort);
+      break;
     case Alg::InsertionSort:
       algs.push_back(new InsertionSort);
+      break;
+    case Alg::RecursiveInsertionSort:
+      algs.push_back(new RecursiveInsertionSort);
       break;
     case Alg::SelectionSort:
       algs.push_back(new SelectionSort);
@@ -94,8 +118,29 @@ static inline std::vector<iSort*> GetSortingAlgorithms()
     case Alg::CombSort:
       algs.push_back(new CombSort);
       break;
+    case Alg::CocktailSort:
+      algs.push_back(new CocktailSort);
+      break;
+    case Alg::PigeonHoleSort:
+      algs.push_back(new PigeonHoleSort);
+      break;
+    case Alg::BitonicSort:
+      algs.push_back(new BitonicSort);
+      break;
+    case Alg::SleepSort:
+      algs.push_back(new SleepSort);
+      break;
     case Alg::StdSort:
       algs.push_back(new StdSort);
+      break;
+    case Alg::StdQSort:
+      algs.push_back(new StdQSort);
+      break;
+    case Alg::StdSortHeap:
+      algs.push_back(new StdSortHeap);
+      break;
+    case Alg::StdStableSort:
+      algs.push_back(new StdStableSort);
       break;
     default:
       break;

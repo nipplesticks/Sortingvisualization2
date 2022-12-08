@@ -34,49 +34,49 @@ public:
   {
     data = other;
   }
-  bool operator<(const Item& other)
+  bool operator<(const Item& other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data < other.data;
   }
-  bool operator<(int other)
+  bool operator<(int other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data < other;
   }
-  bool operator>(const Item& other)
+  bool operator>(const Item& other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data > other.data;
   }
-  bool operator>(int other)
+  bool operator>(int other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data > other;
   }
-  bool operator<=(const Item& other)
+  bool operator<=(const Item& other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data <= other.data;
   }
-  bool operator<=(int other)
+  bool operator<=(int other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data <= other;
   }
-  bool operator>=(const Item& other)
+  bool operator>=(const Item& other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
     return data >= other.data;
   }
-  bool operator>=(int other)
+  bool operator>=(int other) const
   {
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_COMPARISONS++;
@@ -84,15 +84,15 @@ public:
   }
   Item& operator=(const Item& other)
   {
+    data = other.data;
     SleepFor(DELAY_TIME_MS);
     NUMBER_OF_ASSIGNMENTS++;
-    data = other.data;
     return *this;
   }
   int& operator=(int other)
   {
-    SleepFor(DELAY_TIME_MS);
     data = other;
+    SleepFor(DELAY_TIME_MS);
     NUMBER_OF_ASSIGNMENTS++;
     return data;
   }

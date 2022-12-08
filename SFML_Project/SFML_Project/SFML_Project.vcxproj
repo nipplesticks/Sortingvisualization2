@@ -132,6 +132,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sorting\SleepSort.cpp" />
+    <ClCompile Include="Sorting\BitonicSort.cpp" />
+    <ClCompile Include="Sorting\RecursiveInsertionSort.cpp" />
+    <ClCompile Include="Sorting\RecursiveBubbleSort.cpp" />
+    <ClCompile Include="Sorting\PigeonHoleSort.cpp" />
+    <ClCompile Include="Sorting\CocktailSort.cpp" />
     <ClCompile Include="Sorting\CombSort.cpp" />
     <ClCompile Include="Sorting\ShellSort.cpp" />
     <ClCompile Include="Sorting\CycleSort.cpp" />
@@ -147,11 +153,20 @@
     <ClCompile Include="Sorting\InsertionSort.cpp" />
     <ClCompile Include="Sorting\SelectionSort.cpp" />
     <ClCompile Include="Sorting\Shuffle.cpp" />
+    <ClCompile Include="Sorting\StdQSort.cpp" />
     <ClCompile Include="Sorting\StdSort.cpp" />
+    <ClCompile Include="Sorting\StdSortHeap.cpp" />
+    <ClCompile Include="Sorting\StdStableSort.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sorting\StoogeSort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sorting\SleepSort.h" />
+    <ClInclude Include="Sorting\BitonicSort.h" />
+    <ClInclude Include="Sorting\RecursiveInsertionSort.h" />
+    <ClInclude Include="Sorting\RecursiveBubbleSort.h" />
+    <ClInclude Include="Sorting\PigeonHoleSort.h" />
+    <ClInclude Include="Sorting\CocktailSort.h" />
     <ClInclude Include="Sorting\CombSort.h" />
     <ClInclude Include="Sorting\ShellSort.h" />
     <ClInclude Include="Sorting\CycleSort.h" />
@@ -170,7 +185,10 @@
     <ClInclude Include="Sorting\SelectionSort.h" />
     <ClInclude Include="Sorting\Shuffle.h" />
     <ClInclude Include="Sorting\Sorting.h" />
+    <ClInclude Include="Sorting\StdQSort.h" />
     <ClInclude Include="Sorting\StdSort.h" />
+    <ClInclude Include="Sorting\StdSortHeap.h" />
+    <ClInclude Include="Sorting\StdStableSort.h" />
     <ClInclude Include="Sorting\StoogeSort.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
