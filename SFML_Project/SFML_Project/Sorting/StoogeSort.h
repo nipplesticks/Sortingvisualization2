@@ -1,15 +1,16 @@
 #pragma once
 #include "iSort.h"
-
-class RandomSort : public iSort
+class StoogeSort : public iSort
 {
 public:
 
-  // Inherited via iSort
-  virtual std::string GetName() override;
-  virtual double Run(List& list) override;
 
   // Inherited via iSort
   virtual double GetRecomendedDelay() override;
+
+  virtual std::string GetName() override;
+
+  virtual double Run(List& list) override;
+
 };
 

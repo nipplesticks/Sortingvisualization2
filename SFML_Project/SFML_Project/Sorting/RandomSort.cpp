@@ -6,7 +6,7 @@ std::string RandomSort::GetName()
   return "Random Sort... with bubble sort to finnish the job after 100k missed comparisons";
 }
 
-double RandomSort::Run(std::vector<Item>& list)
+double RandomSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;
   Timer t;
@@ -52,4 +52,9 @@ double RandomSort::Run(std::vector<Item>& list)
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;
+}
+
+double RandomSort::GetRecomendedDelay()
+{
+    return 0.0;
 }

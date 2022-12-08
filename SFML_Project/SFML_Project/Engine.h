@@ -2,13 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Sorting/Item.h"
+#include <mutex>
 
 class Engine
 {
 public:
+  static std::mutex ENGINE_MUTEX;
   static sf::Vector2u WINDOW_SIZE;
   Engine();
 
+  void SetDelayString(const std::string& str);
   void Run();
   void Draw(sf::RenderTarget* renderTarget_p);
   void Terminate();
@@ -42,9 +45,10 @@ private:
   };
 
   bool myIsTerminated = false;
-  std::vector<Item> myValues;
+  List myValues;
   sf::Text myAlgorithmName;
   sf::Text myDelay;
   sf::Text myComparison;
+  sf::Text myAsignments;
   sf::Text myTimeTaken;
 };

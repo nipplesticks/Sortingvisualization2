@@ -5,7 +5,7 @@ std::string SelectionSort::GetName()
     return "Selection sort";
 }
 
-double SelectionSort::Run(std::vector<Item>& list)
+double SelectionSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;
   Timer t;
@@ -27,4 +27,9 @@ double SelectionSort::Run(std::vector<Item>& list)
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;
+}
+
+double SelectionSort::GetRecomendedDelay()
+{
+    return 0.01;
 }

@@ -8,6 +8,7 @@
 class iSort
 {
 public:
+  virtual double GetRecomendedDelay() = 0;
   virtual std::string GetName() = 0;
-  virtual double Run(std::vector<Item>& list) = 0;
+  virtual double Run(List& list) = 0;
 };

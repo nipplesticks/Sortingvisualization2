@@ -4,7 +4,9 @@
 
 double Item::DELAY_TIME_MS = 0;
 size_t Item::NUMBER_OF_COMPARISONS = 0;
+size_t Item::NUMBER_OF_ASSIGNMENTS = 0;
 double Item::TIME_IN_SLEEP_MODE = 0;
+std::mutex Engine::ENGINE_MUTEX;
 
 sf::Vector2u Engine::WINDOW_SIZE = sf::Vector2u(1280, 720);
 
@@ -30,8 +32,13 @@ Engine::Engine()
   for (int i = 0; i < Engine::WINDOW_SIZE.x; i++)
   {
     float t = (float)i / Engine::WINDOW_SIZE.x;
-    myValues.push_back(t * Engine::WINDOW_SIZE.y);
+    myValues.push_back((t * Engine::WINDOW_SIZE.y) + 0.5f);
   }
+}
+
+void Engine::SetDelayString(const std::string& str)
+{
+  myDelay.setString(str);
 }
 
 void Engine::Run()
@@ -46,6 +53,7 @@ void Engine::Run()
   myAlgorithmName.setFont(font);
   myAlgorithmName.setFillColor(sf::Color::White);
   myAlgorithmName.setString(sortAlg[selectedAlgorithm]->GetName());
+  Item::DELAY_TIME_MS = sortAlg[selectedAlgorithm]->GetRecomendedDelay();
 
   myDelay.setFont(font);
   myDelay.setFillColor(sf::Color::White);
@@ -57,23 +65,24 @@ void Engine::Run()
   myComparison.setString("Comparisons last run: 0");
   myComparison.setPosition(0, 64);
 
+  myAsignments.setFont(font);
+  myAsignments.setFillColor(sf::Color::White);
+  myAsignments.setString("Asignments last run: 0");
+  myAsignments.setPosition(0, 96);
+
   myTimeTaken.setFont(font);
   myTimeTaken.setFillColor(sf::Color::White);
   myTimeTaken.setString("Time last run: 0 ms");
-  myTimeTaken.setPosition(0, 96);
+  myTimeTaken.setPosition(0, 128);
 
   bool leftWasPressed = false;
   bool rightWasPressed = false;
-  bool upWasPressed = false;
-  bool downWasPressed = false;
   bool spaceWasPressed = false;
 
   while (!myIsTerminated)
   {
     bool leftKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
     bool rightKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
-    bool upKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
-    bool downKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
     bool spaceKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 
     if (leftKey || rightKey)
@@ -92,47 +101,36 @@ void Engine::Run()
       }
       selectedAlgorithm = (Alg::SortAlgs)selAlg;
       myAlgorithmName.setString(sortAlg[selectedAlgorithm]->GetName());
-    }
-    else if (upKey || downKey)
-    {
-      double d = 0.005;
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-        d = 0.01;
-
-      if (upKey && !upWasPressed)
-      {
-        Item::DELAY_TIME_MS += d;
-      }
-      else if (downKey && !downWasPressed)
-      {
-        Item::DELAY_TIME_MS -= d;
-      }
-      Item::DELAY_TIME_MS = std::max(0.0, Item::DELAY_TIME_MS);
-      myDelay.setString("Sleep per comparison: " + std::to_string(Item::DELAY_TIME_MS) + " ms");
+      ENGINE_MUTEX.lock();
+      Item::DELAY_TIME_MS = sortAlg[selectedAlgorithm]->GetRecomendedDelay();
+      SetDelayString("Sleep per comparison: " + std::to_string(Item::DELAY_TIME_MS) + " ms");
+      ENGINE_MUTEX.unlock();
     }
     else if (spaceKey && !spaceWasPressed)
     {
+      ENGINE_MUTEX.lock();
       Item::NUMBER_OF_COMPARISONS = 0;
+      Item::NUMBER_OF_ASSIGNMENTS = 0;
       double old = Item::DELAY_TIME_MS;
-      Item::DELAY_TIME_MS = 0.1;
+      Item::DELAY_TIME_MS = 0.0;
       sortAlg[Alg::Shuffle]->Run(myValues);
       Item::DELAY_TIME_MS = old;
+      ENGINE_MUTEX.unlock();
       double timeMs = sortAlg[selectedAlgorithm]->Run(myValues);
       myComparison.setString("Comparisons last run: " + std::to_string(Item::NUMBER_OF_COMPARISONS));
+      myAsignments.setString("Asignments last run: " + std::to_string(Item::NUMBER_OF_ASSIGNMENTS));
       myTimeTaken.setString("Time last run: " + std::to_string(timeMs) + " ms");
     }
 
     spaceWasPressed = spaceKey;
     leftWasPressed = leftKey;
     rightWasPressed = rightKey;
-    upWasPressed = upKey;
-    downWasPressed = downKey;
   }
 }
 
 void Engine::Draw(sf::RenderTarget* renderTarget_p)
 {
-  std::vector<Item> copy = myValues;
+  List copy = myValues;
 
   for (int i = 0; i < copy.size(); i++)
   {
@@ -143,6 +141,7 @@ void Engine::Draw(sf::RenderTarget* renderTarget_p)
   renderTarget_p->draw(myAlgorithmName);
   renderTarget_p->draw(myDelay);
   renderTarget_p->draw(myComparison);
+  renderTarget_p->draw(myAsignments);
   renderTarget_p->draw(myTimeTaken);
 }
 

@@ -5,7 +5,7 @@ std::string BubbleSort::GetName()
   return "Bubble sort";
 }
 
-double BubbleSort::Run(std::vector<Item>& list)
+double BubbleSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;
   Timer t;
@@ -23,4 +23,9 @@ double BubbleSort::Run(std::vector<Item>& list)
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;
+}
+
+double BubbleSort::GetRecomendedDelay()
+{
+    return 0.01;
 }

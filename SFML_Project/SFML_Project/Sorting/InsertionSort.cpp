@@ -5,7 +5,7 @@ std::string InsertionSort::GetName()
     return "Insertion sort";
 }
 
-double InsertionSort::Run(std::vector<Item>& list)
+double InsertionSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;
   Timer t;
@@ -25,4 +25,9 @@ double InsertionSort::Run(std::vector<Item>& list)
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;
+}
+
+double InsertionSort::GetRecomendedDelay()
+{
+    return 0.01;
 }

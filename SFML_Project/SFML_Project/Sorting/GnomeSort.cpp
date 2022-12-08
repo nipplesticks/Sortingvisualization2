@@ -5,7 +5,7 @@ std::string GnomeSort::GetName()
   return "Gnome Sort";
 }
 
-double GnomeSort::Run(std::vector<Item>& list)
+double GnomeSort::Run(List& list)
 {
   Item::TIME_IN_SLEEP_MODE = 0;
   Timer t;
@@ -18,7 +18,7 @@ double GnomeSort::Run(std::vector<Item>& list)
   {
     if (idx == 0)
       idx++;
-    if (list[idx - 1] < list[idx])
+    if (list[idx] >= list[idx - 1])
       idx++;
     else
     {
@@ -28,4 +28,9 @@ double GnomeSort::Run(std::vector<Item>& list)
   }
 
   return t.Stop(Timer::MILLISECONDS) - Item::TIME_IN_SLEEP_MODE;
+}
+
+double GnomeSort::GetRecomendedDelay()
+{
+    return 0.01;
 }

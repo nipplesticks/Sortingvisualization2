@@ -1,7 +1,6 @@
 #pragma once
 #include "iSort.h"
-
-class RandomSort : public iSort
+class HeapSort : public iSort
 {
 public:
 
